@@ -844,12 +844,12 @@ public class UploadServlet extends HttpServlet implements Servlet {
    */
   protected String parsePostRequest(HttpServletRequest request, HttpServletResponse response) {
 
-    try {
+    /*try {
       String delay = request.getParameter(PARAM_DELAY);
       String maxFilesize = request.getParameter(PARAM_MAX_FILE_SIZE);
       maxSize = maxFilesize != null && maxFilesize.matches("[0-9]*") ? Long.parseLong(maxFilesize) : maxSize;
       uploadDelay = Integer.parseInt(delay);
-    } catch (Exception e) { }
+    } catch (Exception e) { }*/
 
     HttpSession session = request.getSession();
 
