@@ -51,38 +51,6 @@ public class UploadLogger {
     }
   }
 
-  static class Log4jLogger implements ILogger {
-    org.apache.log4j.Logger logger;
-
-    protected Log4jLogger(String name) {
-      logger = org.apache.log4j.Logger.getLogger(name);
-    }
-
-    public void debug(Object o) {
-      logger.debug(o);
-    }
-
-    public void info(Object o) {
-      logger.info(o);
-    }
-
-    public void error(Object o) {
-      logger.error(o);
-    }
-
-    public void debug(Object o, Throwable t) {
-      logger.debug(o, t);
-    }
-
-    public void error(Object o, Throwable t) {
-      logger.error(o, t);
-    }
-
-    public void info(Object o, Throwable t) {
-      logger.info(o, t);
-    }
-  }
-
   static class JavaLogger implements ILogger {
     java.util.logging.Logger logger;
 
@@ -118,17 +86,12 @@ public class UploadLogger {
   ILogger logger;
 
   private UploadLogger(String name) {
-    try {
-      Class.forName("org.apache.log4j.Logger");
-      logger = new Log4jLogger(name);
-    } catch (ClassNotFoundException e1) {
       try {
         Class.forName("java.util.logging.Logger");
         logger = new JavaLogger(name);
       } catch (ClassNotFoundException e2) {
         logger = new StderrLogger(name);
       }
-    }
   }
 
   public static UploadLogger getLogger(Class<?> class1) {
